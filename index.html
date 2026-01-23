@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday Jiya 💖</title>
+
+<style>
+:root{
+  --pink-light:#ffe6f0;
+  --pink:#ff7eb3;
+  --pink-dark:#d63384;
+  --white:#ffffff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,var(--pink-light),var(--white),var(--pink));
+  overflow-x:hidden;
+  color:#5a1a3a;
+  position:relative;
+}
+
+/* Sparkle effect on cursor */
+.sparkle{
+  position:fixed;
+  width:8px;
+  height:8px;
+  background:radial-gradient(circle, var(--pink), transparent);
+  border-radius:50%;
+  pointer-events:none;
+  animation:sparkleAnim 1s ease-out forwards;
+  z-index:9999;
+}
+
+@keyframes sparkleAnim{
+  0%{transform:scale(0) rotate(0deg); opacity:1;}
+  100%{transform:scale(3) rotate(180deg); opacity:0;}
+}
+
+/* floating hearts background */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:floatUp linear infinite;
+  opacity:0.7;
+  pointer-events:none;
+  z-index:1;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0) scale(1) rotate(0deg); opacity:0;}
+  10%{opacity:0.7;}
+  to{transform:translateY(-120vh) scale(1.5) rotate(360deg); opacity:0;}
+}
+
+/* main card */
+.card{
+  max-width:900px;
+  margin:6vh auto;
+  background:rgba(255,255,255,0.9);
+  border-radius:30px;
+  padding:40px 25px;
+  box-shadow:0 25px 60px rgba(214,51,132,0.25);
+  animation:cardEnter 1.6s ease;
+  position:relative;
+  z-index:10;
+  backdrop-filter:blur(10px);
+  border:2px solid rgba(255,255,255,0.5);
+}
+
+@keyframes cardEnter{
+  from{opacity:0; transform:translateY(60px) scale(0.95);}
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+
+h1{
+  text-align:center;
+  font-size:clamp(2.2rem,5vw,3.4rem);
+  color:var(--pink-dark);
+  margin-bottom:10px;
+  animation:pulse 2.5s infinite;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  text-shadow:2px 2px 4px rgba(214,51,132,0.2);
+}
+
+h1:hover{
+  transform:scale(1.08) rotate(-2deg);
+  text-shadow:3px 3px 8px rgba(214,51,132,0.4);
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+}
+
+.date{
+  text-align:center;
+  font-size:1rem;
+  letter-spacing:1px;
+  margin-bottom:30px;
+  opacity:0;
+  animation:fadeIn 1s ease 0.5s forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+.message{
+  font-size:clamp(1.05rem,2.8vw,1.25rem);
+  line-height:1.8;
+  text-align:center;
+  padding:0 5px;
+  animation:fadeUp 2s ease;
+  transition:all 0.3s ease;
+}
+
+.message:hover{
+  transform:scale(1.02);
+  color:var(--pink-dark);
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* wishes section */
+.wishes{
+  margin-top:40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.wish{
+  background:linear-gradient(135deg,#fff,#ffe6f0);
+  border-radius:22px;
+  padding:22px;
+  text-align:center;
+  box-shadow:0 12px 25px rgba(214,51,132,0.15);
+  transform:translateY(20px);
+  opacity:0;
+  transition:all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  border:2px solid transparent;
+}
+
+.wish::before{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:0;
+  height:0;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,126,179,0.3), transparent);
+  transform:translate(-50%, -50%);
+  transition:all 0.6s ease;
+}
+
+.wish:hover::before{
+  width:300px;
+  height:300px;
+}
+
+.wish:hover{
+  transform:translateY(-8px) scale(1.05);
+  box-shadow:0 20px 40px rgba(214,51,132,0.3);
+  border-color:var(--pink);
+  background:linear-gradient(135deg,#fff,#ffd4e8);
+}
+
+.wish.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+.wish span{
+  font-size:2rem;
+  display:block;
+  margin-bottom:10px;
+  transition:all 0.4s ease;
+  position:relative;
+  z-index:2;
+}
+
+.wish:hover span{
+  transform:scale(1.3) rotate(360deg);
+}
+
+.wish-text{
+  position:relative;
+  z-index:2;
+  transition:all 0.3s ease;
+}
+
+.wish:hover .wish-text{
+  font-weight:600;
+  color:var(--pink-dark);
+}
+
+/* Interactive button */
+.celebrate-btn{
+  display:block;
+  margin:40px auto 0;
+  padding:16px 40px;
+  font-size:1.1rem;
+  background:linear-gradient(135deg, var(--pink), var(--pink-dark));
+  color:white;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(214,51,132,0.3);
+  transition:all 0.3s ease;
+  font-weight:600;
+  letter-spacing:0.5px;
+  animation:btnAppear 1s ease 2s backwards;
+}
+
+@keyframes btnAppear{
+  from{opacity:0; transform:translateY(20px) scale(0.8);}
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+
+.celebrate-btn:hover{
+  transform:translateY(-3px) scale(1.05);
+  box-shadow:0 12px 30px rgba(214,51,132,0.5);
+  background:linear-gradient(135deg, var(--pink-dark), var(--pink));
+}
+
+.celebrate-btn:active{
+  transform:translateY(-1px) scale(1.02);
+}
+
+/* Confetti */
+.confetti{
+  position:fixed;
+  width:10px;
+  height:10px;
+  background:var(--pink);
+  top:-10px;
+  animation:confettiFall 3s linear forwards;
+  z-index:9999;
+  pointer-events:none;
+}
+
+@keyframes confettiFall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+    opacity:0;
+  }
+}
+
+/* footer */
+.footer{
+  margin-top:50px;
+  text-align:center;
+  font-size:1rem;
+  color:#7a294e;
+  animation:fadeUp 2.5s ease;
+  transition:all 0.3s ease;
+}
+
+.footer:hover{
+  transform:scale(1.03);
+  color:var(--pink-dark);
+}
+
+.signature{
+  margin-top:15px;
+  font-weight:600;
+  color:var(--pink-dark);
+  cursor:pointer;
+  transition:all 0.3s ease;
+  display:inline-block;
+}
+
+.signature:hover{
+  transform:scale(1.1) rotate(-3deg);
+  text-shadow:2px 2px 4px rgba(214,51,132,0.3);
+}
+
+/* Floating message popup */
+.popup{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%) scale(0);
+  background:rgba(255,255,255,0.98);
+  padding:40px;
+  border-radius:25px;
+  box-shadow:0 20px 60px rgba(214,51,132,0.4);
+  z-index:10000;
+  max-width:500px;
+  text-align:center;
+  transition:all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border:3px solid var(--pink);
+}
+
+.popup.active{
+  transform:translate(-50%, -50%) scale(1);
+}
+
+.popup-close{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:var(--pink);
+  color:white;
+  border:none;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:1.2rem;
+  transition:all 0.3s ease;
+}
+
+.popup-close:hover{
+  background:var(--pink-dark);
+  transform:rotate(90deg);
+}
+
+.popup h2{
+  color:var(--pink-dark);
+  margin-bottom:20px;
+  font-size:1.8rem;
+}
+
+.popup p{
+  color:#5a1a3a;
+  font-size:1.1rem;
+  line-height:1.6;
+}
+
+/* responsive padding */
+@media(max-width:480px){
+  .card{margin:4vh 10px; padding:30px 18px;}
+  .wishes{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1 id="title">Happy Birthday Jiya 💖</h1>
+  <div class="date">24 • January • A Day That Feels Softer 🌸</div>
+
+  <div class="message">
+    Today isn't just your birthday.  
+    It's a reminder that some people walk into our lives  
+    and quietly make everything feel warmer, lighter, and kinder.  
+    <br><br>
+    Jiya, your presence carries gentleness,  
+    your smile holds comfort,  
+    and your friendship is one of those rare things  
+    that feels pure without trying.  
+    <br><br>
+    On this day, may you feel deeply celebrated,  
+    endlessly valued,  
+    and surrounded by love that feels safe and real. 🌷
+  </div>
+
+  <div class="wishes">
+    <div class="wish">
+      <span>🌸</span>
+      <div class="wish-text">May your days bloom softly with happiness.</div>
+    </div>
+    <div class="wish">
+      <span>💗</span>
+      <div class="wish-text">May your heart always feel understood.</div>
+    </div>
+    <div class="wish">
+      <span>✨</span>
+      <div class="wish-text">May dreams gently find their way to you.</div>
+    </div>
+    <div class="wish">
+      <span>🕊️</span>
+      <div class="wish-text">May peace stay close, even on loud days.</div>
+    </div>
+  </div>
+
+  <button class="celebrate-btn" id="celebrateBtn">Celebrate with Confetti 🎉</button>
+
+  <div class="footer">
+    Some friendships don't need loud words —  
+    they just need honesty, care, and time.
+    <div class="signature" id="signature">Always wishing you the purest joy 🌷</div>
+  </div>
+</div>
+
+<!-- Popup message -->
+<div class="popup" id="popup">
+  <button class="popup-close" id="popupClose">✕</button>
+  <h2>A Special Note 💌</h2>
+  <p>
+    Jiya, you make ordinary moments extraordinary just by being you. 
+    Your kindness is a gift, your laughter is medicine, and your friendship 
+    is a treasure I cherish every single day. Here's to another year of 
+    beautiful memories, genuine smiles, and the kind of friendship that 
+    feels like home. Happy Birthday! 🌸✨
+  </p>
+</div>
+
+<!-- Background music (local file) -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Sparkle cursor effect
+let mouseX = 0, mouseY = 0;
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  
+  if(Math.random() > 0.8){
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = mouseX + 'px';
+    sparkle.style.top = mouseY + 'px';
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+  }
+});
+
+// Floating hearts
+const emojis = ["💗","💖","🌸","✨","💞","🌷"];
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+  heart.style.fontSize = 16 + Math.random() * 24 + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 10000);
+}, 500);
+
+// Reveal wishes with stagger
+const wishes = document.querySelectorAll(".wish");
+wishes.forEach((w, i) => {
+  setTimeout(() => w.classList.add("show"), 800 + i * 400);
+});
+
+// Confetti button
+const celebrateBtn = document.getElementById('celebrateBtn');
+celebrateBtn.addEventListener('click', () => {
+  for(let i = 0; i < 100; i++){
+    setTimeout(() => {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.background = ['#ff7eb3', '#d63384', '#ffe6f0', '#ffd700'][Math.floor(Math.random() * 4)];
+      confetti.style.width = confetti.style.height = (5 + Math.random() * 10) + 'px';
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 3000);
+    }, i * 30);
+  }
+  
+  celebrateBtn.textContent = '🎊 Amazing! 🎊';
+  setTimeout(() => {
+    celebrateBtn.textContent = 'Celebrate Again! 🎉';
+  }, 2000);
+});
+
+// Title click - burst effect
+const title = document.getElementById('title');
+title.addEventListener('click', () => {
+  for(let i = 0; i < 20; i++){
+    const heart = document.createElement('div');
+    heart.textContent = '✨';
+    heart.style.position = 'fixed';
+    heart.style.left = title.getBoundingClientRect().left + title.offsetWidth/2 + 'px';
+    heart.style.top = title.getBoundingClientRect().top + title.offsetHeight/2 + 'px';
+    heart.style.fontSize = '20px';
+    heart.style.pointerEvents = 'none';
+    heart.style.zIndex = '9999';
+    
+    const angle = (Math.PI * 2 * i) / 20;
+    const velocity = 100 + Math.random() * 100;
+    
+    document.body.appendChild(heart);
+    
+    let posX = 0, posY = 0;
+    const animate = () => {
+      posX += Math.cos(angle) * 3;
+      posY += Math.sin(angle) * 3 + 2;
+      heart.style.transform = `translate(${posX}px, ${posY}px) scale(${1 - posY/200})`;
+      heart.style.opacity = 1 - posY/200;
+      
+      if(posY < 200){
+        requestAnimationFrame(animate);
+      } else {
+        heart.remove();
+      }
+    };
+    animate();
+  }
+});
+
+// Signature click - show popup
+const signature = document.getElementById('signature');
+const popup = document.getElementById('popup');
+const popupClose = document.getElementById('popupClose');
+
+signature.addEventListener('click', () => {
+  popup.classList.add('active');
+});
+
+popupClose.addEventListener('click', () => {
+  popup.classList.remove('active');
+});
+
+popup.addEventListener('click', (e) => {
+  if(e.target === popup){
+    popup.classList.remove('active');
+  }
+});
+
+// Background music with user interaction
+let musicStarted = false;
+const bgm = document.getElementById('bgm');
+
+document.body.addEventListener('click', () => {
+  if(!musicStarted){
+    bgm.play().catch(() => {});
+    musicStarted = true;
+  }
+}, {once: true});
+
+// Wish cards click animation
+wishes.forEach(wish => {
+  wish.addEventListener('click', () => {
+    wish.style.animation = 'none';
+    setTimeout(() => {
+      wish.style.animation = '';
+    }, 10);
+    
+    // Create mini burst
+    for(let i = 0; i < 8; i++){
+      const mini = document.createElement('div');
+      mini.textContent = wish.querySelector('span').textContent;
+      mini.style.position = 'fixed';
+      const rect = wish.getBoundingClientRect();
+      mini.style.left = rect.left + rect.width/2 + 'px';
+      mini.style.top = rect.top + rect.height/2 + 'px';
+      mini.style.fontSize = '16px';
+      mini.style.pointerEvents = 'none';
+      mini.style.zIndex = '9999';
+      document.body.appendChild(mini);
+      
+      const angle = (Math.PI * 2 * i) / 8;
+      let pos = 0;
+      const burst = () => {
+        pos += 4;
+        mini.style.transform = `translate(${Math.cos(angle)*pos}px, ${Math.sin(angle)*pos}px) scale(${1-pos/80})`;
+        mini.style.opacity = 1 - pos/80;
+        if(pos < 80){
+          requestAnimationFrame(burst);
+        } else {
+          mini.remove();
+        }
+      };
+      burst();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
